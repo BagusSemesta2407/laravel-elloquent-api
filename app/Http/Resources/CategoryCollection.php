@@ -15,7 +15,8 @@ class CategoryCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return [
-            "data" => $this->collection,
+            // "data" => $this->collection, this collection (model) akan direturnkan dalam bentuk serialization. karena serialization akan mengembalikan semua data
+            "data" => CategorySimpleResource::collection($this->collection), // jika dilakukan unit test maka atribut created_at dan updated_at akan hilang. dan unit test akan menganggap itu sebuah error 
             "total" => count($this->collection)
         ];
     }
